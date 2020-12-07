@@ -1,0 +1,16 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  NewCops: enable
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+    Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
