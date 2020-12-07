@@ -1,4 +1,4 @@
 task :default do
-  ruby '-I. -rrainbow -rdebugging 2b.rb'
-  sh 'rubocop -A --disable-uncorrectable 2*.rb'
+  ruby '-I. -rrainbow -rdebugging 3b.rb'
+  sh 'rubocop -A --disable-uncorrectable 3*.rb'
 end
