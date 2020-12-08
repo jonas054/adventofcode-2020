@@ -20,13 +20,11 @@ def run(program) # rubocop:todo Metrics/MethodLength
 
     executed_lines << pc
     instruction, argument = program[pc]
-    case instruction
-    when 'acc' then acc += argument
-    when 'jmp' then pc += argument - 1
-    end
+    acc += argument if instruction == 'acc'
+    pc += argument - 1 if instruction == 'jmp'
     pc += 1
-    return [:normal_exit, acc] if pc == program.size
-    return [:infinite_loop, acc] if executed_lines.include?(pc)
+    return acc if pc == program.size
+    return nil if executed_lines.include?(pc)
   end
 end
 
@@ -36,25 +34,15 @@ def parse(line)
   [$1, $2.to_i]
 end
 
-def replace_instruction(program, index, replacement)
-  current = program[index][0]
-  program[index][0] = replacement
-  result = yield
-  program[index][0] = current
-  result
-end
-
 OPERATORS = %w[jmp nop].freeze
 
 program = input.lines.map { |line| parse(line) }
-program.each_index do |ix|
-  instruction = program[ix][0]
+program.each_with_index do |(instruction, _), ix|
   next unless OPERATORS.include?(instruction)
 
   replacement = OPERATORS[1 - OPERATORS.index(instruction)]
   program[ix][0] = replacement
-  result = run(program)
-  debug result
-  exit if result.first == :normal_exit
+  @result = run(program) and break
   program[ix][0] = instruction
 end
+debug @result
