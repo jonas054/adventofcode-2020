@@ -1,6 +1,6 @@
 task :default do
-  sh 'rubocop -A --disable-uncorrectable 15*.rb'
-  ruby '-I. -rrainbow -rdebugging 15.rb'
+  sh 'rubocop -A --disable-uncorrectable 16*.rb'
+  ruby '-I. -rrainbow -rdebugging 16b.rb'
 end
 
 task :fifteen do
