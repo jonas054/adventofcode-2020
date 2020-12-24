@@ -1,15 +1,19 @@
 def debug(*args)
-  puts Rainbow(*args).yellow
+  puts '  ' * (caller.length - 1) + Rainbow(*args).yellow
 end
 
 def info(*args)
-  puts Rainbow(*args).cyan
+  puts '  ' * (caller.length - 1) + Rainbow(*args).cyan
 end
 
 def warning(*args)
-  puts Rainbow(*args).pink
+  puts '  ' * (caller.length - 1) + Rainbow(*args).pink
 end
 
 def error(*args)
-  puts Rainbow(*args).red
+  puts '  ' * (caller.length - 1) + Rainbow(*args).red
+end
+
+def green(*args)
+  puts '  ' * (caller.length - 1) + Rainbow(*args).green
 end
